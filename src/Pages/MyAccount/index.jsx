@@ -3,9 +3,11 @@ import { Layout } from "../../Components/Layout";
 
 function MyAccount() {
   return (
-    <Layout>
+      <div>
         My Account
-    </Layout>
+
+      </div>
+        
       
   );
 }

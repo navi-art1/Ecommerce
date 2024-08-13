@@ -2,9 +2,9 @@ import { Layout } from "../../Components/Layout";
 
 function Home() {
   return (
-    <Layout>
+    <div>
       Home
-    </Layout>
+    </div>
   );
 }
 

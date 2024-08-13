@@ -6,25 +6,27 @@ import { MyOrders } from "../MyOrders";
 import { NotFound } from "../NotFound";
 import { SignIn } from "../SignIn";
 import { Navbar } from "../../Components/Navbar";
-
+import { Layout } from "../../Components/Layout";
 
 import "./App.css";
 
 const App = () => {
   return (
     <BrowserRouter>
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/my-account" element={<MyAccount />} />
-        <Route path="/my-order" element={<MyOrder />} />
-        <Route path="/my-orders" element={<MyOrders />} />
-        <Route path="/sign-in" element={<SignIn />} />
-        <Route path="*" element={<NotFound />} />
-      </Routes>
-      <Navbar/>
+      <Layout>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/my-account" element={<MyAccount />} />
+          <Route path="/my-order" element={<MyOrder />} />
+          <Route path="/my-orders" element={<MyOrders />} />
+          <Route path="/sign-in" element={<SignIn />} />
+          <Route path="*" element={<NotFound />} />
+        </Routes>
+      </Layout>
+
+      <Navbar />
     </BrowserRouter>
   );
 };
 
 export default App;
-
