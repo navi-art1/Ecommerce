@@ -4,9 +4,9 @@ const Navbar = () => {
   const activeStyle = "underline underline-offset-8 thick-underline font-semibold";
 
   return (
-    <nav className="flex justify-between items-center fixed top-0 z-10 w-full py-5 px-8 text-sm font-light ">
+    <nav className="flex justify-between items-center bg-[#1f2a3c] fixed top-0 z-10 w-full py-5 px-8 text-sm font-light ">
       <ul className="flex items-center gap-4">
-      <li className="font-bold text-lg">
+      <li className="font-bold text-lg ">
         <NavLink to="/">Shopi</NavLink>
       </li>
 
@@ -38,7 +38,7 @@ const Navbar = () => {
           </NavLink>
         </li>
 
-        <li>
+        <li >
           <NavLink
             to={"/furnitures"}
             className={({ isActive }) => (isActive ? activeStyle : undefined)}
@@ -67,7 +67,7 @@ const Navbar = () => {
       </ul>
 
       <ul className="flex items-center gap-4">
-        <li className="text-black/75">Joel@uni.pe</li>
+        <li className="/75">Joel@uni.pe</li>
 
         <li>
           <NavLink
@@ -101,7 +101,7 @@ const Navbar = () => {
             to={"/furnitures"}
             className={({ isActive }) => (isActive ? activeStyle : undefined)}
           >
-            🚮0
+            <i className="fa-solid fa-cart-shopping"></i>+
           </NavLink>
         </li>
 
