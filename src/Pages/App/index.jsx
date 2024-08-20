@@ -7,25 +7,29 @@ import { NotFound } from "../NotFound";
 import { SignIn } from "../SignIn";
 import { Navbar } from "../../Components/Navbar";
 import { Layout } from "../../Components/Layout";
+import { ShoppingContextProvider } from "../../Context";
 
 import "./App.css";
 
 const App = () => {
   return (
-    <BrowserRouter>
-      <Layout>
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/my-account" element={<MyAccount />} />
-          <Route path="/my-order" element={<MyOrder />} />
-          <Route path="/my-orders" element={<MyOrders />} />
-          <Route path="/sign-in" element={<SignIn />} />
-          <Route path="*" element={<NotFound />} />
-        </Routes>
-      </Layout>
-
+    <ShoppingContextProvider>
+      <BrowserRouter>
       <Navbar />
-    </BrowserRouter>
+        <Layout>
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/my-account" element={<MyAccount />} />
+            <Route path="/my-order" element={<MyOrder />} />
+            <Route path="/my-orders" element={<MyOrders />} />
+            <Route path="/sign-in" element={<SignIn />} />
+            <Route path="*" element={<NotFound />} />
+          </Routes>
+        </Layout>
+
+
+      </BrowserRouter>
+    </ShoppingContextProvider>
   );
 };
 

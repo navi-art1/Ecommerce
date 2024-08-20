@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { Card } from "../../Card";
+import { ProductDetail } from "../../Components/ProductDetail";
 
 function Home() {
   const [items, setItems] = useState([]);
@@ -15,13 +16,14 @@ function Home() {
   }, []);
 
   return (
-    <div>
-      All Products
-      <div className="grid gap-4 grid-cols-4 w-full  max-w-screen-lg">
+    <div className="flex flex-col items-center">
+      <div className="text-2xl font-bold mb-4">All Products</div>
+      <div className="grid gap-4 grid-cols-4 w-full max-w-screen-lg">
         {items.map((item) => (
           <Card key={item.id} data={item} />
         ))}
       </div>
+      <ProductDetail />
     </div>
   );
 }

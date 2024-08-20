@@ -1,4 +1,10 @@
+import { useContext } from "react";
+import { ShoppingContext } from "../Context";
+
 const Card = ({ data }) => {
+
+  const context = useContext(ShoppingContext)
+
   const shortenTitle = (title, maxLength) => {
     return title.length > maxLength
       ? title.substring(0, maxLength) + "..."
@@ -29,10 +35,13 @@ const Card = ({ data }) => {
         <div className="flex justify-between w-full items-center">
           <span className="text-lg font-bold">${data.price}</span>
 
-          <div className="bg-[#f64461] px-3 py-2 rounded gap-2 flex items-center cursor-pointer">
-            <span className="text-xs">Add to Cart</span>
-            <i className="fa-solid fa-cart-shopping text-xs"></i>
-          </div>
+        <div
+          className="bg-[#f64461] px-3 py-2 rounded gap-2 flex items-center cursor-pointer"
+          onClick={() => context.setCount(context.count + 1)}
+        >
+          <span className="text-xs">Add to Cart</span>
+          <i className="fa-solid fa-cart-shopping text-xs"></i>
+        </div>
         </div>
       </div>
     </div>
