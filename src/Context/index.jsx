@@ -2,21 +2,25 @@ import { createContext, useState } from "react";
 
 export const ShoppingContext = createContext();
 
-export const ShoppingContextProvider = ({children})=>{
+export const ShoppingContextProvider = ({ children }) => {
+  const [count, setCount] = useState(0);
+  const [isProductDetailOpen, setIsProductDetailOpen] = useState(false);
+  const openProductDetail = () => setIsProductDetailOpen(true);
+  const closeProductDetail = () => setIsProductDetailOpen(false);
 
-    const[isPrductDetailOpen, setisPrductDetailOpen]= useState(false)
+  console.log("Count", count);
 
-    const [count, setCount]= useState(0)
-    console.log('Count', count)
-
-    return (
-        <ShoppingContext.Provider value={{
-            count,
-            setCount
-        }}>
-        {children}
-        </ShoppingContext.Provider>
-    )
-
-}
-
+  return (
+    <ShoppingContext.Provider
+      value={{
+        count,
+        setCount,
+        openProductDetail,
+        closeProductDetail,
+        isProductDetailOpen,
+      }}
+    >
+      {children}
+    </ShoppingContext.Provider>
+  );
+};

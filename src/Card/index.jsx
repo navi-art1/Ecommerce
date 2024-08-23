@@ -12,7 +12,9 @@ const Card = ({ data }) => {
   };
 
   return (
-    <div className="w-60 border-2 border-white/15 flex flex-col items-center p-2 rounded-lg">
+    <div className="w-60 border-2 border-white/15 flex flex-col items-center p-2 rounded-lg cursor-pointer"
+      onClick={()=>context.openProductDetail()}
+    >
       <figure className="w-full aspect-square rounded-lg relative">
         <div className="flex justify-center items-center h-6 w-6 bg-white/80 rounded-full absolute top-2.5 right-2.5 cursor-pointer">
           <i className="fa-regular fa-heart text-[#f64461]/80 text-base"></i>
