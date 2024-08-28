@@ -8,6 +8,7 @@ import { SignIn } from "../SignIn";
 import { Navbar } from "../../Components/Navbar";
 import { Layout } from "../../Components/Layout";
 import { ShoppingContextProvider } from "../../Context";
+import { CheckoutSideMenu } from "../../Components/CheckoutSideMenu";
 
 import "./App.css";
 
@@ -15,8 +16,9 @@ const App = () => {
   return (
     <ShoppingContextProvider>
       <BrowserRouter>
-      <Navbar />
+        <Navbar />
         <Layout>
+          <CheckoutSideMenu />
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/my-account" element={<MyAccount />} />
@@ -26,8 +28,6 @@ const App = () => {
             <Route path="*" element={<NotFound />} />
           </Routes>
         </Layout>
-
-
       </BrowserRouter>
     </ShoppingContextProvider>
   );
