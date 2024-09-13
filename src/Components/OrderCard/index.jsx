@@ -1,8 +1,7 @@
 import React, { useState } from "react";
 
-const OrdenCard = (props) => {
-  const { title, imageUrl, price } = props;
-  const [quantity, setQuantity] = useState(1); // Estado para el contador
+const OrdenCard = ({ title, imageUrl, price, onRemove }) => {
+  const [quantity, setQuantity] = useState(1);
 
   const shortenTitle = (title, maxLength) => {
     return title.length > maxLength
@@ -12,7 +11,7 @@ const OrdenCard = (props) => {
 
   const increment = () => setQuantity(quantity + 1);
   const decrement = () => {
-    if (quantity > 1) setQuantity(quantity - 1);
+    setQuantity(quantity - 1);
   };
 
   return (
@@ -33,7 +32,10 @@ const OrdenCard = (props) => {
             <p className="text-mg">{shortenTitle(title, 50)}</p>
           </div>
 
-          <i className="text-gray-600 cursor-pointer fas fa-trash"></i>
+          <i
+            onClick={onRemove}
+            className="text-gray-600 cursor-pointer fas fa-trash"
+          ></i>
         </div>
         <div className="flex justify-between items-center">
           <div className="border-2 border-gray-300 flex flex-row w-18 h-6 items-center justify-center rounded-md">
@@ -55,9 +57,7 @@ const OrdenCard = (props) => {
               <i className="text-xs fas fa-plus"></i>
             </button>
           </div>
-          <p className="font-bold text-2xl text-red-400">
-            ${price * quantity}
-          </p>
+          <p className="font-bold text-2xl text-red-400">${price * quantity}</p>
         </div>
       </div>
     </div>

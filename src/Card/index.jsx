@@ -16,12 +16,20 @@ const Card = ({ data }) => {
     context.closeCheckoutSideMenu();
   };
 
+  const isProductInCart = (productId) => {
+    return context.cartProducts.some(product => product.id === productId);
+  };
+
+
+
   const addProductsToCard = (event , productData) => {
     event.stopPropagation();
-    context.setCount(context.count + 1);
-    context.setCartProducts([...context.cartProducts, productData]);
-    context.openCheckoutSideMenu();
-    context.closeProductDetail();
+   if (!isProductInCart(productData.id)) {
+      context.setCount(context.count + 1);
+      context.setCartProducts([...context.cartProducts, productData]);
+      context.openCheckoutSideMenu();
+      context.closeProductDetail();
+    }
 
 
   };
