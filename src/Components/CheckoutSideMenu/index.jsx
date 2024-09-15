@@ -1,7 +1,7 @@
 import { useContext } from "react";
 import { ShoppingContext } from "../../Context";
 import { OrdenCard } from "../OrderCard";
-import './styles.css'
+import './styles.css';
 
 const CheckoutSideMenu = () => {
   const context = useContext(ShoppingContext);
@@ -9,12 +9,20 @@ const CheckoutSideMenu = () => {
   const handleRemoveProduct = (productId) => {
     context.removeProductFromCart(productId);
   };
+
+  // Cambia estos nombres a los nombres correctos según el contexto
   const handleIncreaseQuantity = (productId) => {
-    context.increaseProductQuantity(productId);
+    context.incrementQuantity(productId); // Corregido
   };
+
   const handleDecreaseQuantity = (productId) => {
-    context.decreaseProductQuantity(productId);
+    context.decrementQuantity(productId); // Corregido
   };
+
+    // Calcular el total
+    const calculateTotal = () => {
+      return context.cartProducts.reduce((total, product) => total + product.price * product.quantity, 0);
+    };
 
   return (
     <aside
@@ -33,13 +41,14 @@ const CheckoutSideMenu = () => {
         </div>
       </div>
 
-      <div className="contentOrder" >
+      <div className="contentOrder">
         {context.cartProducts.map((product) => (
           <OrdenCard
             key={product.id}
+            id={product.id} // Asegúrate de pasar el id
             title={product.title}
             imageUrl={product.image}
-            price={product.price}
+            price={product.price.toFixed(2)}
             quantity={product.quantity}
             onIncrease={() => handleIncreaseQuantity(product.id)}
             onDecrease={() => handleDecreaseQuantity(product.id)}
@@ -50,11 +59,10 @@ const CheckoutSideMenu = () => {
 
       <div className="flex justify-between items-center h-16 text-black box-border px-3">
         <p className="text-2xl font-bold text-red-500">Total</p>
-        <p className="text-2xl font-bold text-red-500">$999</p>
+        <p className="text-2xl font-bold text-red-500">${calculateTotal().toFixed(2)}</p>
       </div>
     </aside>
   );
-  
 };
 
 export { CheckoutSideMenu };

@@ -24,9 +24,30 @@ export const ShoppingContextProvider = ({ children }) => {
   const [cartProducts, setCartProducts] = useState([]);
 
   // Remove product
-
   const removeProductFromCart = (productId) => {
     setCartProducts(cartProducts.filter((product) => product.id !== productId));
+  };
+
+  // Función para incrementar la cantidad de un producto en particular
+  const incrementQuantity = (productId) => {
+    setCartProducts((prevProducts) =>
+      prevProducts.map((product) =>
+        product.id === productId
+          ? { ...product, quantity: product.quantity + 1 }
+          : product
+      )
+    );
+  };
+
+  // Función para decrementar la cantidad de un producto en particular
+  const decrementQuantity = (productId) => {
+    setCartProducts((prevProducts) =>
+      prevProducts.map((product) =>
+        product.id === productId && product.quantity > 1
+          ? { ...product, quantity: product.quantity - 1 }
+          : product
+      )
+    );
   };
 
   return (
@@ -46,6 +67,10 @@ export const ShoppingContextProvider = ({ children }) => {
         closeCheckoutSideMenu,
         setIsCheckoutSideMenuOpen,
         removeProductFromCart,
+
+        incrementQuantity,
+        decrementQuantity,
+
       }}
     >
       {children}

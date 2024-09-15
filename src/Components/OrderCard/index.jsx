@@ -1,7 +1,8 @@
-import React, { useState } from "react";
+import { useContext } from "react";
+import { ShoppingContext } from "../../Context";
 
-const OrdenCard = ({ title, imageUrl, price, onRemove }) => {
-  const [quantity, setQuantity] = useState(1);
+const OrdenCard = ({ id, title, imageUrl, price, onRemove, quantity }) => {
+  const { incrementQuantity, decrementQuantity } = useContext(ShoppingContext);
 
   const shortenTitle = (title, maxLength) => {
     return title.length > maxLength
@@ -9,20 +10,11 @@ const OrdenCard = ({ title, imageUrl, price, onRemove }) => {
       : title;
   };
 
-  const increment = () => setQuantity(quantity + 1);
-  const decrement = () => {
-    setQuantity(quantity - 1);
-  };
-
   return (
     <div className="mb-3 flex h-24 rounded-lg bg-gray-100 shadow-md">
       <div className="flex items-center gap-2">
         <figure className="w-20 h-20 ml-3">
-          <img
-            className="w-full h-full rounded-lg"
-            src={imageUrl}
-            alt={title}
-          />
+          <img className="w-full h-full rounded-lg" src={imageUrl} alt={title} />
         </figure>
       </div>
 
@@ -32,15 +24,16 @@ const OrdenCard = ({ title, imageUrl, price, onRemove }) => {
             <p className="text-mg">{shortenTitle(title, 50)}</p>
           </div>
 
-          <i
-            onClick={onRemove}
-            className="text-gray-600 cursor-pointer fas fa-trash"
-          ></i>
+          <i onClick={onRemove} className="text-gray-600 cursor-pointer fas fa-trash"></i>
         </div>
+
         <div className="flex justify-between items-center">
           <div className="border-2 border-gray-300 flex flex-row w-18 h-6 items-center justify-center rounded-md">
             <button
-              onClick={decrement}
+              onClick={() => {
+                console.log(`Decrementing quantity for product id: ${id}`); // Depuración
+                decrementQuantity(id);
+              }}
               className="h-full w-6 bg-white flex items-center justify-center rounded-l-md"
             >
               <i className="text-xs fas fa-minus"></i>
@@ -51,13 +44,16 @@ const OrdenCard = ({ title, imageUrl, price, onRemove }) => {
             </span>
 
             <button
-              onClick={increment}
+              onClick={() => {
+                console.log(`Incrementing quantity for product id: ${id}`); // Depuración
+                incrementQuantity(id);
+              }}
               className="h-full w-6 bg-white flex items-center justify-center rounded-r-md"
             >
               <i className="text-xs fas fa-plus"></i>
             </button>
           </div>
-          <p className="font-bold text-2xl text-red-400">${price * quantity}</p>
+          <p className="font-bold text-2xl text-red-400">${(price * quantity).toFixed(2)}</p>
         </div>
       </div>
     </div>

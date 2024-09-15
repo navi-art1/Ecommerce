@@ -17,21 +17,19 @@ const Card = ({ data }) => {
   };
 
   const isProductInCart = (productId) => {
-    return context.cartProducts.some(product => product.id === productId);
+    return context.cartProducts.some((product) => product.id === productId);
   };
 
-
-
-  const addProductsToCard = (event , productData) => {
+  const addProductsToCard = (event, productData) => {
     event.stopPropagation();
-   if (!isProductInCart(productData.id)) {
+  
+    if (!isProductInCart(productData.id)) {
+      const productWithQuantity = { ...productData, quantity: 1 }; 
       context.setCount(context.count + 1);
-      context.setCartProducts([...context.cartProducts, productData]);
+      context.setCartProducts([...context.cartProducts, productWithQuantity]);
       context.openCheckoutSideMenu();
       context.closeProductDetail();
     }
-
-
   };
 
   return (
