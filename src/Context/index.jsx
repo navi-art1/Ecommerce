@@ -23,11 +23,6 @@ export const ShoppingContextProvider = ({ children }) => {
   // Shopping Cart add products to cart
   const [cartProducts, setCartProducts] = useState([]);
 
-  // Remove product
-  const removeProductFromCart = (productId) => {
-    setCartProducts(cartProducts.filter((product) => product.id !== productId));
-  };
-
   // Función para incrementar la cantidad de un producto en particular
   const incrementQuantity = (productId) => {
     setCartProducts((prevProducts) =>
@@ -39,16 +34,22 @@ export const ShoppingContextProvider = ({ children }) => {
     );
   };
 
-  // Función para decrementar la cantidad de un producto en particular
   const decrementQuantity = (productId) => {
     setCartProducts((prevProducts) =>
-      prevProducts.map((product) =>
-        product.id === productId && product.quantity > 1
-          ? { ...product, quantity: product.quantity - 1 }
-          : product
-      )
+      prevProducts
+        .map((product) =>
+          product.id === productId
+            ? { ...product, quantity: product.quantity - 1 }
+            : product
+        )
+        .filter((product) => product.quantity > 0) // Filtrar productos con cantidad 0
     );
   };
+  
+    // Remove product
+    const removeProductFromCart = (productId) => {
+      setCartProducts(cartProducts.filter((product) => product.id !== productId));
+    };
 
   return (
     <ShoppingContext.Provider

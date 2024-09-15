@@ -1,7 +1,7 @@
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import { ShoppingContext } from "../../Context";
 import { OrdenCard } from "../OrderCard";
-import './styles.css';
+import "./styles.css";
 
 const CheckoutSideMenu = () => {
   const context = useContext(ShoppingContext);
@@ -10,19 +10,29 @@ const CheckoutSideMenu = () => {
     context.removeProductFromCart(productId);
   };
 
-  // Cambia estos nombres a los nombres correctos según el contexto
+  
   const handleIncreaseQuantity = (productId) => {
-    context.incrementQuantity(productId); // Corregido
+    context.incrementQuantity(productId); 
   };
 
   const handleDecreaseQuantity = (productId) => {
-    context.decrementQuantity(productId); // Corregido
+    context.decrementQuantity(productId); 
   };
 
-    // Calcular el total
-    const calculateTotal = () => {
-      return context.cartProducts.reduce((total, product) => total + product.price * product.quantity, 0);
-    };
+  // Calcule the total
+  const calculateTotal = () => {
+    return context.cartProducts.reduce(
+      (total, product) => total + product.price * product.quantity,
+      0
+    );
+  };
+
+  // Close the CheckoutSideMenu if there are no products in the cart
+  useEffect(() => {
+    if (context.cartProducts.length === 0) {
+      context.closeCheckoutSideMenu();
+    }
+  }, [context.cartProducts]);
 
   return (
     <aside
@@ -59,7 +69,9 @@ const CheckoutSideMenu = () => {
 
       <div className="flex justify-between items-center h-16 text-black box-border px-3">
         <p className="text-2xl font-bold text-red-500">Total</p>
-        <p className="text-2xl font-bold text-red-500">${calculateTotal().toFixed(2)}</p>
+        <p className="text-2xl font-bold text-red-500">
+          ${calculateTotal().toFixed(2)}
+        </p>
       </div>
     </aside>
   );
