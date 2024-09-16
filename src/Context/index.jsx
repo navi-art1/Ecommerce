@@ -51,6 +51,13 @@ export const ShoppingContextProvider = ({ children }) => {
       setCartProducts(cartProducts.filter((product) => product.id !== productId));
     };
 
+
+    // shopingCart Order
+
+    const [order,setOrder]=useState([])
+
+
+
   return (
     <ShoppingContext.Provider
       value={{
@@ -68,9 +75,10 @@ export const ShoppingContextProvider = ({ children }) => {
         closeCheckoutSideMenu,
         setIsCheckoutSideMenuOpen,
         removeProductFromCart,
-
         incrementQuantity,
         decrementQuantity,
+        order,
+        setOrder
 
       }}
     >

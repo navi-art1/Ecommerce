@@ -10,13 +10,24 @@ const CheckoutSideMenu = () => {
     context.removeProductFromCart(productId);
   };
 
-  
   const handleIncreaseQuantity = (productId) => {
-    context.incrementQuantity(productId); 
+    context.incrementQuantity(productId);
   };
 
   const handleDecreaseQuantity = (productId) => {
-    context.decrementQuantity(productId); 
+    context.decrementQuantity(productId);
+  };
+
+  const handleCheckout = () => {
+    const orderToAdd = {
+      date: "01.02.23",
+      product: context.cartProducts,
+      totalProducts: context.cartProducts.length,
+      totalPrice: calculateTotal().toFixed(2),
+    };
+
+    context.setOrder([...context.order, orderToAdd]);
+    context.setCartProducts([]);
   };
 
   // Calcule the total
@@ -67,11 +78,23 @@ const CheckoutSideMenu = () => {
         ))}
       </div>
 
-      <div className="flex justify-between items-center h-16 text-black box-border px-3">
-        <p className="text-2xl font-bold text-red-500">Total</p>
-        <p className="text-2xl font-bold text-red-500">
-          ${calculateTotal().toFixed(2)}
-        </p>
+      <div
+        style={{ display:'flex', flexDirection:'column',gap:'12px' }}
+        className=" p-2"
+      >
+        <div className="flex  items-center justify-between" >
+          <p className="text-2xl font-bold text-red-500">Total</p>
+          <p className="text-2xl font-bold text-red-500">
+            ${calculateTotal().toFixed(2)}
+          </p>
+        </div>
+
+        <button className="button-checkout" 
+
+          onClick={() => handleCheckout()}
+        >
+          Checkout
+        </button>
       </div>
     </aside>
   );
