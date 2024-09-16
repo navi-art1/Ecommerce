@@ -31,6 +31,11 @@ const Card = ({ data }) => {
       context.setCartProducts([...context.cartProducts, productWithQuantity]);
       context.openCheckoutSideMenu();
       context.closeProductDetail();
+      context.closeProductDetail();
+    }
+    else{
+      context.openCheckoutSideMenu();
+      context.closeProductDetail();
     }
   };
 

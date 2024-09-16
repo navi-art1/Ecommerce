@@ -1,27 +1,28 @@
 .product-detail{
     width: 420px;
     height: calc(100vh - 112px);
+ 
 }
 
 .product-detail-enter {
     opacity: 0;
-    transform: translateX(100%);
+    transform: translateX(10px);
   }
   
   .product-detail-enter-active {
     opacity: 1;
-    transform: translateX(0);
-    transition: opacity 0.8s ease, transform 0.5s ease;
+    transform: translateY(0);
+    transition: opacity 0.5s ease, transform 0.5s ease;
   }
   
   .product-detail-exit {
     opacity: 1;
-    transform: translateX(0);
+    transform: translateY(0);
   }
   
   .product-detail-exit-active {
     opacity: 0;
-    transform: translateX(100%);
-    transition: opacity 0.8s ease, transform 0.5s ease;
+    transform: translateX(10px);
+    transition: opacity 0.5s ease, transform 0.5s ease;
   }
   
