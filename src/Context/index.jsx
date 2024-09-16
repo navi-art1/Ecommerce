@@ -3,27 +3,26 @@ import { createContext, useState } from "react";
 export const ShoppingContext = createContext();
 
 export const ShoppingContextProvider = ({ children }) => {
-  // Shopping cart Increment Quantity
+  // Shopping cart count
   const [count, setCount] = useState(0);
-  console.log("Count", count);
 
-  // Prodcut Detail Open/Close
+  // Product Detail Open/Close
   const [isProductDetailOpen, setIsProductDetailOpen] = useState(false);
   const openProductDetail = () => setIsProductDetailOpen(true);
   const closeProductDetail = () => setIsProductDetailOpen(false);
 
-  // Chekout Side Menu Open/Close
+  // Checkout Side Menu Open/Close
   const [isCheckoutSideMenuOpen, setIsCheckoutSideMenuOpen] = useState(false);
   const openCheckoutSideMenu = () => setIsCheckoutSideMenuOpen(true);
   const closeCheckoutSideMenu = () => setIsCheckoutSideMenuOpen(false);
 
-  //Product Detail show product
+  // Show product details
   const [productToShow, setProductToShow] = useState({});
 
-  // Shopping Cart add products to cart
+  // Shopping Cart products
   const [cartProducts, setCartProducts] = useState([]);
 
-  // Función para incrementar la cantidad de un producto en particular
+  // Increment product quantity in cart
   const incrementQuantity = (productId) => {
     setCartProducts((prevProducts) =>
       prevProducts.map((product) =>
@@ -34,6 +33,7 @@ export const ShoppingContextProvider = ({ children }) => {
     );
   };
 
+  // Decrement product quantity in cart
   const decrementQuantity = (productId) => {
     setCartProducts((prevProducts) =>
       prevProducts
@@ -42,21 +42,19 @@ export const ShoppingContextProvider = ({ children }) => {
             ? { ...product, quantity: product.quantity - 1 }
             : product
         )
-        .filter((product) => product.quantity > 0) // Filtrar productos con cantidad 0
+        .filter((product) => product.quantity > 0) // Remove products with quantity 0
     );
   };
-  
-    // Remove product
-    const removeProductFromCart = (productId) => {
-      setCartProducts(cartProducts.filter((product) => product.id !== productId));
-    };
 
+  // Remove product from cart
+  const removeProductFromCart = (productId) => {
+    setCartProducts((prevProducts) =>
+      prevProducts.filter((product) => product.id !== productId)
+    );
+  };
 
-    // shopingCart Order
-
-    const [order,setOrder]=useState([])
-
-
+  // Orders
+  const [order, setOrder] = useState([]);
 
   return (
     <ShoppingContext.Provider
@@ -73,13 +71,11 @@ export const ShoppingContextProvider = ({ children }) => {
         isCheckoutSideMenuOpen,
         openCheckoutSideMenu,
         closeCheckoutSideMenu,
-        setIsCheckoutSideMenuOpen,
         removeProductFromCart,
         incrementQuantity,
         decrementQuantity,
         order,
-        setOrder
-
+        setOrder,
       }}
     >
       {children}

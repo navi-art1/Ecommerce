@@ -1,14 +1,17 @@
-.product-detail {
+/* Estilos del CheckoutSideMenu */
+.checkout-side-menu {
   opacity: 0;
   transform: translateX(100%);
   transition: opacity 0.8s ease, transform 0.5s ease;
+  max-height:  calc(100vh - 112px);
 }
 
-.product-detail.open {
+.checkout-side-menu.open {
   opacity: 1;
   transform: translateX(0);
 }
 
+/* Estilos para las transiciones de fade */
 .fade-enter {
   opacity: 0;
   transform: translateY(-10px);
@@ -31,14 +34,15 @@
   transition: opacity 0.5s ease, transform 0.5s ease;
 }
 
-
 .contentOrder {
   overflow: auto;
 }
+
 .contentOrder::-webkit-scrollbar {
   display: none;
 }
 
+/* Estilos del botón de Checkout */
 .button-checkout {
   background: #040517;
   color: #fff;
@@ -54,10 +58,12 @@
   width: 90%;
   align-self: center;
 }
+
 .button-checkout:hover {
   background: #fff;
   color: #040517;
 }
+
 .button-checkout:before,
 .button-checkout:after {
   content: "";
@@ -69,12 +75,14 @@
   background: #040517;
   transition: 800ms ease all;
 }
+
 .button-checkout:after {
   right: inherit;
   top: inherit;
   left: 0;
   bottom: 0;
 }
+
 .button-checkout:hover:before,
 .button-checkout:hover:after {
   width: 100%;

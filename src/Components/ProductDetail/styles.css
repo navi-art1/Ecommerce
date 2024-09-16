@@ -2,3 +2,26 @@
     width: 420px;
     height: calc(100vh - 112px);
 }
+
+.product-detail-enter {
+    opacity: 0;
+    transform: translateX(100%);
+  }
+  
+  .product-detail-enter-active {
+    opacity: 1;
+    transform: translateX(0);
+    transition: opacity 0.8s ease, transform 0.5s ease;
+  }
+  
+  .product-detail-exit {
+    opacity: 1;
+    transform: translateX(0);
+  }
+  
+  .product-detail-exit-active {
+    opacity: 0;
+    transform: translateX(100%);
+    transition: opacity 0.8s ease, transform 0.5s ease;
+  }
+  

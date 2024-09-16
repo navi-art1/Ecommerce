@@ -11,10 +11,12 @@ const Card = ({ data }) => {
   };
 
   const showProduct = (productDetail) => {
+    console.log(productDetail); // Verifica que los datos del producto sean correctos
     context.openProductDetail();
     context.setProductToShow(productDetail);
     context.closeCheckoutSideMenu();
   };
+  
 
   const isProductInCart = (productId) => {
     return context.cartProducts.some((product) => product.id === productId);

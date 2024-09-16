@@ -31,7 +31,6 @@ const CheckoutSideMenu = () => {
     context.setCartProducts([]);
   };
 
-  // Calculate the total
   const calculateTotal = () => {
     return context.cartProducts.reduce(
       (total, product) => total + product.price * product.quantity,
@@ -39,7 +38,6 @@ const CheckoutSideMenu = () => {
     );
   };
 
-  // Close the CheckoutSideMenu if there are no products in the cart
   useEffect(() => {
     if (context.cartProducts.length === 0) {
       context.closeCheckoutSideMenu();
@@ -48,9 +46,9 @@ const CheckoutSideMenu = () => {
 
   return (
     <aside
-      className={`product-detail ${
+      className={`checkout-side-menu ${
         context.isCheckoutSideMenuOpen ? "open" : ""
-      } p-4 flex flex-col fixed right-0 border border-black rounded-lg bg-white z-10`}
+      } p-4 flex flex-col fixed right-0 border border-black rounded-lg bg-white z-40`}
     >
       <div className="flex justify-between items-center mb-4">
         <h2 className="text-black font-bold">My Order</h2>
@@ -65,13 +63,9 @@ const CheckoutSideMenu = () => {
 
       <TransitionGroup className="contentOrder">
         {context.cartProducts.map((product) => (
-          <CSSTransition
-            key={product.id}
-            timeout={500}
-            classNames="fade"
-          >
+          <CSSTransition key={product.id} timeout={500} classNames="fade">
             <OrdenCard
-              id={product.id} // Asegúrate de pasar el id
+              id={product.id}
               title={product.title}
               imageUrl={product.image}
               price={product.price.toFixed(2)}
@@ -85,7 +79,7 @@ const CheckoutSideMenu = () => {
       </TransitionGroup>
 
       <div
-        style={{ display: 'flex', flexDirection: 'column', gap: '12px' ,marginTop:'auto'}}
+        style={{ display: "flex", flexDirection: "column", gap: "12px", marginTop: "auto" }}
         className="p-2"
       >
         <div className="flex items-center justify-between">
@@ -99,9 +93,6 @@ const CheckoutSideMenu = () => {
           Checkout
         </button>
       </div>
-
-
-      
     </aside>
   );
 };
