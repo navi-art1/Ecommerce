@@ -1,6 +1,7 @@
 import { useContext, useEffect } from "react";
 import { ShoppingContext } from "../../Context";
 import { OrdenCard } from "../OrderCard";
+import { CSSTransition, TransitionGroup } from "react-transition-group";
 import "./styles.css";
 
 const CheckoutSideMenu = () => {
@@ -30,7 +31,7 @@ const CheckoutSideMenu = () => {
     context.setCartProducts([]);
   };
 
-  // Calcule the total
+  // Calculate the total
   const calculateTotal = () => {
     return context.cartProducts.reduce(
       (total, product) => total + product.price * product.quantity,
@@ -47,9 +48,9 @@ const CheckoutSideMenu = () => {
 
   return (
     <aside
-      className={`${
-        context.isCheckoutSideMenuOpen ? "flex" : "hidden"
-      } product-detail p-4 flex flex-col fixed right-0 border border-black rounded-lg bg-white z-10`}
+      className={`product-detail ${
+        context.isCheckoutSideMenuOpen ? "open" : ""
+      } p-4 flex flex-col fixed right-0 border border-black rounded-lg bg-white z-10`}
     >
       <div className="flex justify-between items-center mb-4">
         <h2 className="text-black font-bold">My Order</h2>
@@ -62,40 +63,45 @@ const CheckoutSideMenu = () => {
         </div>
       </div>
 
-      <div className="contentOrder">
+      <TransitionGroup className="contentOrder">
         {context.cartProducts.map((product) => (
-          <OrdenCard
+          <CSSTransition
             key={product.id}
-            id={product.id} // Asegúrate de pasar el id
-            title={product.title}
-            imageUrl={product.image}
-            price={product.price.toFixed(2)}
-            quantity={product.quantity}
-            onIncrease={() => handleIncreaseQuantity(product.id)}
-            onDecrease={() => handleDecreaseQuantity(product.id)}
-            onRemove={() => handleRemoveProduct(product.id)}
-          />
+            timeout={500}
+            classNames="fade"
+          >
+            <OrdenCard
+              id={product.id} // Asegúrate de pasar el id
+              title={product.title}
+              imageUrl={product.image}
+              price={product.price.toFixed(2)}
+              quantity={product.quantity}
+              onIncrease={() => handleIncreaseQuantity(product.id)}
+              onDecrease={() => handleDecreaseQuantity(product.id)}
+              onRemove={() => handleRemoveProduct(product.id)}
+            />
+          </CSSTransition>
         ))}
-      </div>
+      </TransitionGroup>
 
       <div
-        style={{ display:'flex', flexDirection:'column',gap:'12px' }}
-        className=" p-2"
+        style={{ display: 'flex', flexDirection: 'column', gap: '12px' ,marginTop:'auto'}}
+        className="p-2"
       >
-        <div className="flex  items-center justify-between" >
+        <div className="flex items-center justify-between">
           <p className="text-2xl font-bold text-red-500">Total</p>
           <p className="text-2xl font-bold text-red-500">
             ${calculateTotal().toFixed(2)}
           </p>
         </div>
 
-        <button className="button-checkout" 
-
-          onClick={() => handleCheckout()}
-        >
+        <button className="button-checkout" onClick={handleCheckout}>
           Checkout
         </button>
       </div>
+
+
+      
     </aside>
   );
 };
