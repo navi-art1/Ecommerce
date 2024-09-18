@@ -1,4 +1,5 @@
 import { useContext, useEffect } from "react";
+import { Link } from "react-router-dom";
 import { ShoppingContext } from "../../Context";
 import { OrdenCard } from "../OrderCard";
 import { CSSTransition, TransitionGroup } from "react-transition-group";
@@ -79,7 +80,12 @@ const CheckoutSideMenu = () => {
       </TransitionGroup>
 
       <div
-        style={{ display: "flex", flexDirection: "column", gap: "12px", marginTop: "auto" }}
+        style={{
+          display: "flex",
+          flexDirection: "column",
+          gap: "12px",
+          marginTop: "auto",
+        }}
         className="p-2"
       >
         <div className="flex items-center justify-between">
@@ -89,9 +95,11 @@ const CheckoutSideMenu = () => {
           </p>
         </div>
 
-        <button className="button-checkout" onClick={handleCheckout}>
-          Checkout
-        </button>
+        <Link to='/my-orders/last'>
+          <button className="button-checkout" onClick={handleCheckout}>
+            Checkout
+          </button>
+        </Link>
       </div>
     </aside>
   );

@@ -24,6 +24,7 @@ const App = () => {
             <Route path="/my-account" element={<MyAccount />} />
             <Route path="/my-order" element={<MyOrder />} />
             <Route path="/my-orders" element={<MyOrders />} />
+            <Route path="/my-orders/last" element={<MyOrder />} />
             <Route path="/sign-in" element={<SignIn />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
