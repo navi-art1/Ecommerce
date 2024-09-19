@@ -56,6 +56,8 @@ export const ShoppingContextProvider = ({ children }) => {
   // Orders
   const [order, setOrder] = useState([]);
 
+  const [orderHistory, setOrderHistory] = useState([]); 
+
   return (
     <ShoppingContext.Provider
       value={{
@@ -76,6 +78,8 @@ export const ShoppingContextProvider = ({ children }) => {
         decrementQuantity,
         order,
         setOrder,
+        orderHistory,
+        setOrderHistory
       }}
     >
       {children}

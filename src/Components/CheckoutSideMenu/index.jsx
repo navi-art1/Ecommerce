@@ -23,16 +23,17 @@ const CheckoutSideMenu = () => {
   const handleCheckout = () => {
     const orderToAdd = {
       date: new Date().toLocaleDateString(),
-      products: context.cartProducts,  
+      products: context.cartProducts,
       totalProducts: context.cartProducts.length,
       totalPrice: calculateTotal().toFixed(2),
     };
   
-    context.setOrder([...context.order, orderToAdd]); 
+    // Agrega el nuevo pedido al historial de pedidos
+    context.setOrderHistory([...context.orderHistory, orderToAdd]);
   
-    // Asynchronously update the cart and only clear after data is processed
+    // Vacía el carrito después de un retraso
     setTimeout(() => {
-      context.setCartProducts([]); 
+      context.setCartProducts([]); // Vacía el carrito
     }, 1000);
   };
   
