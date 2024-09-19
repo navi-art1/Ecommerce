@@ -22,15 +22,22 @@ const CheckoutSideMenu = () => {
 
   const handleCheckout = () => {
     const orderToAdd = {
-      date: "01.02.23",
-      product: context.cartProducts,
+      date: new Date().toLocaleDateString(),
+      products: context.cartProducts,  
       totalProducts: context.cartProducts.length,
       totalPrice: calculateTotal().toFixed(2),
     };
-
-    context.setOrder([...context.order, orderToAdd]);
-    context.setCartProducts([]);
+  
+    context.setOrder([...context.order, orderToAdd]); 
+  
+    // Asynchronously update the cart and only clear after data is processed
+    setTimeout(() => {
+      context.setCartProducts([]); 
+    }, 1000);
   };
+  
+  
+  
 
   const calculateTotal = () => {
     return context.cartProducts.reduce(
