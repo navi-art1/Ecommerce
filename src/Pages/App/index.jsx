@@ -9,6 +9,10 @@ import { Navbar } from "../../Components/Navbar";
 import { Layout } from "../../Components/Layout";
 import { ShoppingContextProvider } from "../../Context";
 import { CheckoutSideMenu } from "../../Components/CheckoutSideMenu";
+import { Electronics } from "../Electronics";
+import { MenClothing } from "../MenClothing";
+import { WomenClothing } from "../WomenClothing";
+import { Jewerly } from "../Jewerly";
 
 import "./App.css";
 
@@ -26,6 +30,11 @@ const App = () => {
             <Route path="/my-orders" element={<MyOrders />} />
             <Route path="/my-orders/last" element={<MyOrder />} />
             <Route path="/sign-in" element={<SignIn />} />
+            <Route path="/electronics" element={<Electronics />} />
+            <Route path="/men-clothing" element={<MenClothing />} />
+            <Route path="/women-clothing" element={<WomenClothing />} />
+            <Route path="/jewerly" element={<Jewerly />} />
+
             <Route path="*" element={<NotFound />} />
           </Routes>
         </Layout>

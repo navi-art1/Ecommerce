@@ -1,12 +1,13 @@
 import "../App/App.css";
 import { Layout } from "../../Components/Layout";
 
-function MyOrders() {
-  return (
-    <div>
-    </div>
 
+function Jewerly() {
+  return (
+    <div className="jewerly">
+
+    </div>
   );
 }
 
-export { MyOrders };
+export { Jewerly }

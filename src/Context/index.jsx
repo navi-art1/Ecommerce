@@ -58,6 +58,14 @@ export const ShoppingContextProvider = ({ children }) => {
 
   const [orderHistory, setOrderHistory] = useState([]); 
 
+  // Gert Products
+
+  const [searchByTitle, setSearchByTitle] = useState(null)
+  console.log('text: ', searchByTitle)
+
+
+
+
   return (
     <ShoppingContext.Provider
       value={{
@@ -79,7 +87,9 @@ export const ShoppingContextProvider = ({ children }) => {
         order,
         setOrder,
         orderHistory,
-        setOrderHistory
+        setOrderHistory,
+        searchByTitle,
+        setSearchByTitle
       }}
     >
       {children}

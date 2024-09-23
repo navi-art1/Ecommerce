@@ -37,7 +37,7 @@ const Navbar = () => {
 
         <li>
           <NavLink
-            to={"/electrinics"}
+            to={"/electronics"}
             className={({ isActive }) => (isActive ? activeStyle : undefined)}
           >
             Electronics
