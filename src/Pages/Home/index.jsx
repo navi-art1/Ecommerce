@@ -1,29 +1,40 @@
-import { useState, useEffect } from "react";
 import { useContext } from "react";
 import { Card } from "../../Card";
 import { ProductDetail } from "../../Components/ProductDetail";
+import { ShoppingContext } from "/src/Context/index";
 import "./styles.css";
 
 function Home() {
-  const [items, setItems] = useState([]);
+  const context = useContext(ShoppingContext);
 
-  useEffect(() => {
-    fetch("https://fakestoreapi.com/products")
-      .then((response) => response.json())
-      .then((data) => {
-        console.log(data);
-        setItems(data);
-      })
-      .catch((error) => console.error("Error fetching data:", error));
-  }, []);
+  const renderView = () => {
+    if (context.searchByTitle?.length > 0) {
+      if (context.filteredItems?.length > 0) {
+        return (
+          <>
+            {context.filteredItems.map((item) => (
+              <Card key={item.id} data={item} />
+            ))}
+          </>
+        );
+      } else {
+        return <div>We don't have any matching items.</div>;
+      }
+    } else {
+      return (
+        <>
+          {context.items?.map((item) => (
+            <Card key={item.id} data={item} />
+          ))}
+        </>
+      );
+    }
+  };
 
   return (
     <div className="flex flex-col items-center">
-      <div 
-       className="grid gap-4 grid-cols-4 w-full max-w-screen-lg">
-        {items.map((item) => (
-          <Card key={item.id} data={item} />
-        ))}
+      <div className="grid gap-4 grid-cols-4 w-full max-w-screen-lg">
+        {renderView()}
       </div>
       <ProductDetail />
     </div>

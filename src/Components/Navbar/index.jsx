@@ -28,10 +28,20 @@ const Navbar = () => {
 
         <li>
           <NavLink
-            to={"/clothes"}
+            to={"/men-clothing"}
             className={({ isActive }) => (isActive ? activeStyle : undefined)}
           >
-            Clothes
+            Men Clothing
+          </NavLink>
+        </li>
+
+
+        <li>
+          <NavLink
+            to={"/women-clothing"}
+            className={({ isActive }) => (isActive ? activeStyle : undefined)}
+          >
+            Women Clothing
           </NavLink>
         </li>
 
@@ -44,32 +54,18 @@ const Navbar = () => {
           </NavLink>
         </li>
 
-        <li>
-          <NavLink
-            to={"/furnitures"}
-            className={({ isActive }) => (isActive ? activeStyle : undefined)}
-          >
-            Furnitures
-          </NavLink>
-        </li>
+
 
         <li>
           <NavLink
-            to={"/toys"}
+            to={"/jewelry"}
             className={({ isActive }) => (isActive ? activeStyle : undefined)}
           >
-            Toys
+            Jewerly
           </NavLink>
         </li>
 
-        <li>
-          <NavLink
-            to={"/others"}
-            className={({ isActive }) => (isActive ? activeStyle : undefined)}
-          >
-            Others
-          </NavLink>
-        </li>
+
       </ul>
 
       <ul className="flex items-center gap-4">

@@ -12,7 +12,7 @@ import { CheckoutSideMenu } from "../../Components/CheckoutSideMenu";
 import { Electronics } from "../Electronics";
 import { MenClothing } from "../MenClothing";
 import { WomenClothing } from "../WomenClothing";
-import { Jewerly } from "../Jewerly";
+import { Jewelry } from "../Jewelry"
 
 import "./App.css";
 
@@ -30,10 +30,10 @@ const App = () => {
             <Route path="/my-orders" element={<MyOrders />} />
             <Route path="/my-orders/last" element={<MyOrder />} />
             <Route path="/sign-in" element={<SignIn />} />
-            <Route path="/electronics" element={<Electronics />} />
-            <Route path="/men-clothing" element={<MenClothing />} />
-            <Route path="/women-clothing" element={<WomenClothing />} />
-            <Route path="/jewerly" element={<Jewerly />} />
+            <Route path="/electronics" element={<Home />} />
+            <Route path="/men-clothing" element={<Home />} />
+            <Route path="/women-clothing" element={<Home />} />
+            <Route path="/jewelry" element={<Home />} />
 
             <Route path="*" element={<NotFound />} />
           </Routes>

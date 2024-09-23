@@ -16,7 +16,7 @@ const Layout = ({ children }) => {
         return "Men Clothing";
       case "/women-clothing":
         return "Women Clothing";
-      case "/jewerly":
+      case "/jewelry":
         return "Jewelry";
       case "/my-account":
         return "My Account";

@@ -2,12 +2,12 @@ import "../App/App.css";
 import { Layout } from "../../Components/Layout";
 
 
-function Jewerly() {
+function Jewelry() {
   return (
-    <div className="jewerly">
+    <div className="Jewelry">
 
     </div>
   );
 }
 
-export { Jewerly }
+export { Jewelry }
