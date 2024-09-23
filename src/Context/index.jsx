@@ -70,24 +70,56 @@ export const ShoppingContextProvider = ({ children }) => {
   const [orderHistory, setOrderHistory] = useState([]);
 
   // Search by title
-  const [searchByTitle, setSearchByTitle] = useState(null);
-  console.log("text: ", searchByTitle);
-
-  const [filteredItems, setFilteredItems] = useState(null);
+  const [searchByTitle, setSearchByTitle] = useState('');
+  const [filteredItems, setFilteredItems] = useState([]);
 
   const filteredItemsByTitle = (items, searchByTitle) => {
     return items?.filter((item) =>
       item.title.toLowerCase().includes(searchByTitle.toLowerCase())
     );
   };
-  
+
+  const [searchByCategory, setSearchByCategory] = useState(null);
+  const filteredItemsByCategory = (items, category) => {
+    return items?.filter((item) => 
+      item.category.toLowerCase().includes(category.toLowerCase())
+    );
+  }
+
+  const filteredItemsByTitleAndCategory = (items, searchByTitle, searchByCategory) => {
+    return items?.filter((item) => 
+      (!searchByTitle || item.title.toLowerCase().includes(searchByTitle.toLowerCase())) &&
+      (!searchByCategory || item.category.toLowerCase().includes(searchByCategory.toLowerCase()))
+    );
+  };
+
   useEffect(() => {
-    if (searchByTitle)
-      setFilteredItems(filteredItemsByTitle(items, searchByTitle));
-  }, [items, searchByTitle]);
+    if (searchByTitle || searchByCategory) {
+      setFilteredItems(filteredItemsByTitleAndCategory(items, searchByTitle, searchByCategory));
+    } else {
+      setFilteredItems(items);
+    }
+  }, [items, searchByTitle, searchByCategory]);
+
+
+  useEffect(() => {
+    let updatedFilteredItems = items;
   
+    if (searchByTitle) {
+      updatedFilteredItems = filteredItemsByTitle(updatedFilteredItems, searchByTitle);
+    }
+    
+    if (searchByCategory) {
+      updatedFilteredItems = updatedFilteredItems.filter((item) => 
+        item.category === searchByCategory
+      );
+    }
+    
+    setFilteredItems(updatedFilteredItems);
+  }, [items, searchByTitle, searchByCategory]);
+  
+
   console.log('filteredItems: ', filteredItems);
-  
 
   return (
     <ShoppingContext.Provider
@@ -113,10 +145,13 @@ export const ShoppingContextProvider = ({ children }) => {
         setOrderHistory,
         searchByTitle,
         setSearchByTitle,
-        items, // <-- Aquí agregamos items para que sea accesible desde otros componentes
+        items,
         setItems,
         filteredItems,
-        setFilteredItems
+        setFilteredItems,
+        searchByCategory,
+        setSearchByCategory,
+
       }}
     >
       {children}

@@ -16,11 +16,9 @@ const Navbar = () => {
 
         <li>
           <NavLink
-            to={"/"}
+            to="/"
+            onClick={() => context.setSearchByCategory('')}
             className={({ isActive }) => (isActive ? activeStyle : undefined)}
-            style={({ isActive }) =>
-              isActive ? { textDecorationThickness: "1.5px" } : {}
-            }
           >
             All
           </NavLink>
@@ -28,17 +26,18 @@ const Navbar = () => {
 
         <li>
           <NavLink
-            to={"/men-clothing"}
+            to="/men-clothing"
+            onClick={() => context.setSearchByCategory('men\'s clothing')}
             className={({ isActive }) => (isActive ? activeStyle : undefined)}
           >
             Men Clothing
           </NavLink>
         </li>
 
-
         <li>
           <NavLink
-            to={"/women-clothing"}
+            to="/women-clothing"
+            onClick={() => context.setSearchByCategory('women\'s clothing')}
             className={({ isActive }) => (isActive ? activeStyle : undefined)}
           >
             Women Clothing
@@ -47,25 +46,23 @@ const Navbar = () => {
 
         <li>
           <NavLink
-            to={"/electronics"}
+            to="/electronics"
+            onClick={() => context.setSearchByCategory('electronics')}
             className={({ isActive }) => (isActive ? activeStyle : undefined)}
           >
             Electronics
           </NavLink>
         </li>
 
-
-
         <li>
           <NavLink
-            to={"/jewelry"}
+            to="/jewelry"
+            onClick={() => context.setSearchByCategory('jewelery')}
             className={({ isActive }) => (isActive ? activeStyle : undefined)}
           >
-            Jewerly
+            Jewelry
           </NavLink>
         </li>
-
-
       </ul>
 
       <ul className="flex items-center gap-4">
