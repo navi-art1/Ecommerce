@@ -11,7 +11,10 @@ const Navbar = () => {
     <nav className="flex justify-between items-center bg-[#1f2a3c] fixed top-0 z-10 w-full py-5 px-8 text-sm font-light ">
       <ul className="flex items-center gap-4">
         <li className="font-bold text-lg ">
-          <NavLink to="/">Shopi</NavLink>
+          <NavLink to="/"  
+          onClick={() => context.setSearchByCategory('')}
+          className={({ isActive }) => (isActive ? activeStyle : undefined)}
+          >Shopi</NavLink>
         </li>
 
         <li>
