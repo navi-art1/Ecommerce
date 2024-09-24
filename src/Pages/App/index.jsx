@@ -1,4 +1,4 @@
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { HashRouter, BrowserRouter, Routes, Route } from "react-router-dom";
 import { Home } from "../Home";
 import { MyAccount } from "../MyAccount";
 import { MyOrder } from "../MyOrder";
@@ -19,7 +19,7 @@ import "./App.css";
 const App = () => {
   return (
     <ShoppingContextProvider>
-      <BrowserRouter>
+      <HashRouter>
         <Navbar />
         <Layout>
           <CheckoutSideMenu />
@@ -37,7 +37,7 @@ const App = () => {
             <Route path="*" element={<NotFound />} />
           </Routes>
         </Layout>
-      </BrowserRouter>
+      </HashRouter>
     </ShoppingContextProvider>
   );
 };
