@@ -22,8 +22,6 @@ const Layout = ({ children }) => {
         return "My Account";
       case "/my-order":
         return "My Order";
-      case "/my-orders":
-        return "My Orders";
       case "/":
         return "All Products";
       default:

@@ -14,10 +14,7 @@ function MyOrder() {
 
   return (
     <div className="CardOrden">
-      <div className="my-orders-header">
-        <h2 className="text-3xl font-bold text-white mb-2">My Orders</h2>
-        <div  className="border-b-4 border-indigo-500 mb-4 "></div>
-      </div>
+
 
       <div className="grid grid-cols-2 gap-10">
         {context.orderHistory.length > 0 ? (

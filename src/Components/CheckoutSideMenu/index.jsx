@@ -103,7 +103,7 @@ const CheckoutSideMenu = () => {
           </p>
         </div>
 
-        <Link to='/my-orders/last'>
+        <Link to='/my-orders'>
           <button className="button-checkout" onClick={handleCheckout}>
             Checkout
           </button>
