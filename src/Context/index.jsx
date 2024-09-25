@@ -119,7 +119,6 @@ export const ShoppingContextProvider = ({ children }) => {
   }, [items, searchByTitle, searchByCategory]);
   
 
-  console.log('filteredItems: ', filteredItems);
 
   return (
     <ShoppingContext.Provider

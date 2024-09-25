@@ -31,7 +31,6 @@ const OrdenCard = ({ id, title, imageUrl, price, onRemove, quantity }) => {
           <div className="border-2 border-gray-300 flex flex-row w-18 h-6 items-center justify-center rounded-md">
             <button
               onClick={() => {
-                console.log(`Decrementing quantity for product id: ${id}`); // Depuración
                 decrementQuantity(id);
               }}
               className="h-full w-6 bg-white flex items-center justify-center rounded-l-md"
@@ -45,7 +44,6 @@ const OrdenCard = ({ id, title, imageUrl, price, onRemove, quantity }) => {
 
             <button
               onClick={() => {
-                console.log(`Incrementing quantity for product id: ${id}`); // Depuración
                 incrementQuantity(id);
               }}
               className="h-full w-6 bg-white flex items-center justify-center rounded-r-md"
