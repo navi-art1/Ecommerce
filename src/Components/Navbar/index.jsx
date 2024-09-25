@@ -14,7 +14,7 @@ const Navbar = () => {
           <NavLink to="/"  
           onClick={() => context.setSearchByCategory('')}
           className={({ isActive }) => (isActive ? activeStyle : undefined)}
-          >Shopi</NavLink>
+          >DevMarket</NavLink>
         </li>
 
         <li>
@@ -109,7 +109,7 @@ const Navbar = () => {
 
         <li>
           <NavLink to={"/as"}>
-            <img src="/public/foto3.png" className="h-8 w-8 rounded-full" />
+            <img src="https://assets-prd.ignimgs.com/2024/05/02/elder-scrolls-skyrim-button-2017-1629409446732-1714671148445.jpg?crop=1%3A1&width=256" className="h-8 w-8 rounded-full" />
           </NavLink>
         </li>
       </ul>
